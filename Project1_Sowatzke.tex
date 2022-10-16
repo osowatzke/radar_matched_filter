@@ -163,4 +163,25 @@ The resulting matched filter output is shown in Figure \ref{Clearly Resolvable}.
 \caption{Clearly Resolvable Targets}
 \label{Clearly Resolvable}
 \end{figure}
+\noindent
+The two targets can be placed much closer and still have resolvable peaks. For example the first target can placed at $25\%$ of the PRI as defined in section 3. The second target can be placed at a time delay that is 2 samples greater than that of the first target.
+\begin{equation}
+R = 750 + \frac{c(2T_s)}{2} = 750 + cT_s = 750 + \frac{c}{f_s} = 753 m
+\end{equation}
+The RCS of the second target can be scaled to provide 20 dB of SNR. The desired RCS is given by
+\begin{equation}
+\sigma = \frac{(4\pi)^3 R^4 k T_0 B_n F_n L_s L_\alpha(R)\cdot SNR}{P_t G^2 \lambda^2} = 0.01317  m^2
+\end{equation}
+The resulting matched filter output is shown in Figure \ref{Resolvable Full}.
+\begin{figure}[H]
+\center{\fbox{\includegraphics[width=0.5\textwidth]{resolvable_full.png}}}
+\caption{Resolvable Targets}
+\label{Resolvable Full}
+\end{figure}
+The targets do not appear immediately appear resolve. However, after zooming in, it is clear that there are two distance peaks as shown in Figure \ref{Resolvable Peak}.
+\begin{figure}[H]
+\center{\fbox{\includegraphics[width=0.5\textwidth]{resolvable_peak.png}}}
+\caption{Resolvable Targets}
+\label{Resolvable Peak}
+\end{figure}
 \end{document}
