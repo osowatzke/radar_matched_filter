@@ -3,6 +3,7 @@
 \usepackage{tabularx}
 \usepackage{float}
 \usepackage{graphicx}
+\usepackage{amsmath}
 \title{Project 1}
 \author{Owen Sowatzke}
 \date{October 10, 2022}
@@ -60,6 +61,7 @@ The received signal is generated according to the block diagram given in Fig. \r
 The transmitted signal is an LFM waveform padded with zeros to length of the pulse. The LFM waveform is generated using the following formula:
 \begin{equation}
 x(t) = e^{j\pi \beta t^2/\tau}
+\label{lfm_equation}
 \end{equation}
 where $\beta$ is the bandwidth of the chirp waveform and $\tau$ is the length of the chirp waveform. The received signal is generated using a scaled and delayed versions of the transmitted signal. The delay of each target can be computed using the following formula:
 \begin{equation}
@@ -71,12 +73,22 @@ SNR = \frac{P_t G^2 \lambda^2 \sigma}{(4\pi)^3 R^4 k T_0 B_n F_n L_s L_\alpha(R)
 \end{equation}
 The noise has unit power. Therefore, to provide the required SNR, each of the target returns must be scaled by $10^{SNR/20}$. The received signal is the sum of each of the target returns and noise. Assuming the radar system has a duplexer, the received signal will also have blanking (i.e. during transmission the receiver will not receive any signal). To model this blanking, the first $L$ samples of the received signal are replaced with zeros.
 \subsection{Modeling the Matched Filter}
-The matched filter output can be generated according to the block diagram shown in Fig. \ref{Generate MF Output}.
+The matched filter output is generated according to the block diagram shown in Fig. \ref{Generate MF Output}.
 \begin{figure}[H]
 \center{\fbox{\includegraphics[width=0.2\textwidth]{gen_mf_output.png}}}
 \caption{Generating Matched Filter Output}
 \label{Generate MF Output}
 \end{figure}
+\noindent
+The matched filter is generated according to the following formula:
+\begin{equation}
+h(t) = x^*(T_M - t)
+\end{equation}
+where $x(t)$ is given in equation \eqref{lfm_equation} and $T_M$ is the duration of the LFM pulse. Convolution is a linear operator. As such, the matched filter operation can be expressed in the following manner:
+\begin{equation}
+y(t) = h(t) * (x(t) + n(t)) = h(t)*x(t) + h(t)*n(t)
+\end{equation}
+The noise and signal can be filtered idependently and produce the same matched filter result. This approach is leveraged in the simulation, and it enables the SNR of the matched filter to be more easily extracted.
 \section{Matched Filter SNR}
 The SNR of a target return can be examined at the ADC and after the matched filter. The SNR of the matched filter output should by larger than the SNR of the ADC input by a factor of the filter length. This result will be confirmed via MATLAB simulation.
 \subsection{SNR of the Received Signal}
