@@ -4,6 +4,7 @@
 \usepackage{float}
 \usepackage{graphicx}
 \usepackage{amsmath}
+\usepackage{amsfonts}
 \title{Project 1}
 \author{Owen Sowatzke}
 \date{October 10, 2022}
@@ -119,10 +120,24 @@ Finally, the SNR at the output of the matched filter is given by
 \begin{equation}
 SNR = 10log_{10}\frac{P_s}{P_n}
 \end{equation}
-The output of the matched filter is shown in Figure \ref{MF Output}.
+The theoretical SNR of the matched filter output should be greater than the SNR of the received signal by a factor of the filter length. As such the theoretical SNR of the matched filter output is given by
+\begin{equation}
+SNR = 20 + 10log_{10}L = 46.02 dB
+\end{equation}
+The output of the matched filter and corresponding SNR are shown in Figure \ref{MF Output}.
 \begin{figure}[H]
 \center{\fbox{\includegraphics[width=0.5\textwidth]{mf_output.png}}}
 \caption{Matched Filter Output}
 \label{MF Output}
 \end{figure}
+\noindent
+The SNR of the matched filter output shown in Figure \ref{MF Output} is close to the theoretical SNR. The peak sidelobe level of the matched filter output is approximately $30 dB$. Note that this is lower than the expected $13.26 dB$ sidelobe of a sinc function. This is because the selected LFM waveform is a zadoff chu sequence. 
+\begin{equation}
+x_u[n] = e^{-j\pi un(n + c_f + 2q)/N_{ZC}}
+\end{equation}
+where 
+$$ 0 \leq n < N_{ZC} $$
+$$ 0 < u < N_{ZC} \text{ and } gcd(N_{ZC},u) = 1$$
+$$ c_f = N_{ZC} \text{ mod } 2$$
+$$ q \in {\mathbb{Z}}$$
 \end{document}
