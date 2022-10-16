@@ -170,7 +170,7 @@ R = 750 + \frac{c(2T_s)}{2} = 750 + cT_s = 750 + \frac{c}{f_s} = 753 m
 \end{equation}
 The RCS of the second target can be scaled to provide 20 dB of SNR. The desired RCS is given by
 \begin{equation}
-\sigma = \frac{(4\pi)^3 R^4 k T_0 B_n F_n L_s L_\alpha(R)\cdot SNR}{P_t G^2 \lambda^2} = 0.01317  m^2
+\sigma = \frac{(4\pi)^3 R^4 k T_0 B_n F_n L_s L_\alpha(R)\cdot SNR}{P_t G^2 \lambda^2} = 0.01328  m^2
 \end{equation}
 The resulting matched filter output is shown in Figure \ref{Resolvable Full}.
 \begin{figure}[H]
@@ -183,5 +183,27 @@ The targets do not appear immediately appear resolve. However, after zooming in,
 \center{\fbox{\includegraphics[width=0.5\textwidth]{resolvable_peak.png}}}
 \caption{Resolvable Targets}
 \label{Resolvable Peak}
+\end{figure}
+\subsection{Unresolvable Targets}
+If the second target is moved 1 sample closer to the first target such that the separation between the targets is only one sample. Then, the range of the second target is given by the following:
+\begin{equation}
+R = 750 + \frac{cT_s}{2} = 750 + \frac{c}{2f_s} = 751.5 m
+\end{equation}
+The RCS of the second target can be scaled to provide 20 dB of SNR. The desired RCS is given by
+\begin{equation}
+\sigma = \frac{(4\pi)^3 R^4 k T_0 B_n F_n L_s L_\alpha(R)\cdot SNR}{P_t G^2 \lambda^2} = 0.01317  m^2
+\end{equation}
+The resulting matched filter output is shown in Figure \ref{Unresolvable Full}.
+\begin{figure}[H]
+\center{\fbox{\includegraphics[width=0.5\textwidth]{unresolvable_full.png}}}
+\caption{Unresolvable Targets}
+\label{Unresolvable Full}
+\end{figure}
+\noindent
+In Figure \ref{Unresolvable Peak}, a closeup of the peak is shown. Note that the return from each of the targets appears to blur into a single peak.
+\begin{figure}[H]
+\center{\fbox{\includegraphics[width=0.5\textwidth]{unresolvable_peak.png}}}
+\caption{Unresolvable Targets}
+\label{Unresolvable Peak}
 \end{figure}
 \end{document}
