@@ -74,6 +74,17 @@ Chirp Bandwidth & 100 MHz \\
 \hline
 \end{tabularx}
 \end{table}
+\noindent
+Additional parameters can be computed using the parameters given in Table \ref{Parameter Table}. For example, the radar system's PRI can be computed as follows:
+\begin{equation}
+PRI = \frac{1}{PRF} = 20 {\mu}s
+\label{PRI Equation}
+\end{equation}
+Another parameter of interest, the length of the LFM pulse ($\tau$), can be computed using the duty cycle ($D$) as follows:
+\begin{equation}
+\tau = PRI \cdot D = 4 {\mu}s
+\label{tau equation}
+\end{equation}
 %\section{Introduction}
 %Both Monte Carlo (MC) Simulations and Importance Sampling (IS) are techniques for estimating probabilities. In this document, both techniques will be used to estimate the probability that a random variable $X$ with distribution $X\sim N(1,1)$ exceeds 3.957 (i.e. $P\{X > 3.957\}$).
 %\section{Monte Carlo Simulation}
