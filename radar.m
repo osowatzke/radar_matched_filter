@@ -183,8 +183,8 @@ classdef radar < handle
             % generate array of times
             t = 0:self.Ts:(self.PRI-self.Ts);
 
-            % generate noise of unit power
-            n = randn(1,length(t));
+            % generate complex noise of unit power
+            n = 1/sqrt(2)*randn(1,length(t)) + 1i*1/sqrt(2)*randn(1,length(t));
 
             % compute delay of each target return (s)
             td = self.compute_time_delay(R);
