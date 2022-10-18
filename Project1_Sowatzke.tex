@@ -110,7 +110,26 @@ y(t) = x(t-t_d)10^{SNR/20}
 \end{equation}
 \par
 The received signal is the sum of each target return and noise sampled from a standard normal distribution. During the waveform transmission, the system is assumed to be "blanked" (i.e. it cannot listen while transmitting). As such, these samples are replaced with zeros.
-
+\par
+To increase the SNR of the received signal, the signal is passed through a matched filter. The radar's systems matched filtering process is shown in Fig. \ref{gen_mf_output}. 
+\begin{figure}[H]
+\centerline{\fbox{\includegraphics[width=0.15\textwidth]{gen_mf_output.png}}}
+\caption{Matched Filtering of the Input Signal.}
+\label{gen_mf_output}
+\end{figure}
+\par
+The radar system's matched filter is generated according to the following equation:
+\begin{equation}
+h = x^*(T_M-t)
+\end{equation}
+To ensure the matched filter is causal, $T_M$ is chosen to be the length of the transmitted LFM waveform.
+\par
+In the radar system model, both the noise and target returns are filtered independently. Note that this is equivalent to directly filtering the received signal.
+\begin{equation}
+y(t) = h(t)*(x(t)+n(t)) = h(t)*x(t) + h(t)*n(t)
+\end{equation}
+This approach is beneficial because it enables the SNR of the matched filter output to be easily extracted.
+\section{SNR of Matched Filter Output}
 
 %The resulting matched filter output can then be used to draw conclusions about SNR and range resolution.
 % 
