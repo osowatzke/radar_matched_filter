@@ -36,7 +36,7 @@ The range resolution of a rectangular pulse is inversely proportional to the len
 Pulse Compression, Linear Frequency Modulated (LFM) Waveform, Matched Filter
 \end{IEEEkeywords}
 \section{Introduction}
-A linear frequency modulated (LFM) waveform is a pulse compression waveform defined according to the following equation:
+A linear frequency modulated (LFM) waveform is a pulse compression waveform defined by the following equation:
 \begin{equation}
 x(t)=e^{j\pi\beta t^2/\tau}
 \label{lfm_waveform}
@@ -50,7 +50,8 @@ where:
 \end{fleqn}
 A sample pulsed radar system will be created in MATLAB to simulate the matched filter response of this waveform. Using the radar system model, the SNR of the matched filter output will be measured and compared to the SNR of the input signal. Additionally, multiple target returns will be generated and used to measure the system's range resolution.
 \section{Sample Radar System Parameters}
-The pulse radar system simulated in MATLAB was designed with the following set of parameters: 
+To generate the required matched filter response, a pulsed radar system was simulated in MATLAB using the following set of parameters: 
+%The pulse radar system simulated in MATLAB was designed with the following set of parameters: 
 \begin{table}[H]
 \caption{Radar System Parameters}
 \label{Parameter Table}
@@ -106,33 +107,33 @@ The SNR of the target return is given by the following equation:
 SNR = \frac{P_t G^2 \lambda^2 \sigma}{(4\pi)^3 R^4 k T_0 B_n F_n L_s L_\alpha(R)}
 \label{snr_formula}
 \end{equation}
-To create a target return with the desired SNR, either the signal power or noise power can be scaled. For this simulation, the signal power is scaled while the noise power is held constant. For SNR defined on a dB scale, the target return can be written as follows:
+To create a target return with the desired SNR, either the signal power or noise power can be scaled. For this simulation, the signal power is scaled while the noise power is held constant. The transmitted signal given in equation \eqref{lfm_waveform} has unit amplitude, and the noise is sampled from the standard complex normal distribution. Therefore, to achieve the desired SNR, the target return must be scaled by the following factor:
 \begin{equation}
-y(t) = x(t-t_d)10^{SNR/20}
+k = 10^{SNR(dB)/20}
 \end{equation}
 \par
-The received signal is the sum of each target return and noise sampled from a complex normal distribution with unit power. During waveform transmission, the receiver is assumed to be "blanked" (i.e. it cannot listen while transmitting). During this period, the received signal is replaced with zeros.
+The received signal is the sum of each target return and noise. During waveform transmission, the receiver is assumed to be "blanked" (i.e. it cannot listen while transmitting). To model the effects of "blanking", the beginning of the received pulse is replaced with zeros.
 \par
-To increase the SNR of the received signal, the signal is passed through a matched filter. The radar's systems matched filtering process is shown in Fig. \ref{gen_mf_output}. 
+To increase the SNR of the received signal, the signal is passed through a matched filter. The radar system's matched filtering process is shown in Fig. \ref{gen_mf_output}. 
 \begin{figure}[H]
 \centerline{\fbox{\includegraphics[width=0.15\textwidth]{gen_mf_output.png}}}
 \caption{Matched Filtering of the Input Signal.}
 \label{gen_mf_output}
 \end{figure}
 \par
-The radar system's matched filter is generated according to the following equation:
+The system's matched filter is generated using to the following equation:
 \begin{equation}
 h = x^*(T_M-t)
 \end{equation}
 To ensure the matched filter is causal, $T_M$ is chosen to be the length of the transmitted LFM waveform.
 \par
-In the radar system model, both the noise and target returns are filtered independently. Note that this is equivalent to directly filtering the received signal.
+In the radar system model, both the noise and target returns are filtered independently. Note that this provides the same result as directly filtering the received signal.
 \begin{equation}
 y(t) = h(t)*(x(t)+n(t)) = h(t)*x(t) + h(t)*n(t)
 \end{equation}
-This approach is beneficial because it enables the SNR of the matched filter output to be easily extracted.
+However, it also provides the ability to easily extract signal and noise power measurements from the matched filter output.
 \section{Matched Filter Output SNR}
-The matched filter uses coherent integration to increase the SNR of the received signal. The matched filter output SNR should be greater than the SNR of the received signal by a factor of $L$, where $L$ is the matched filter length in samples. For the given radar system, the matched filter length is
+The SNR at the output of the matched filter output should be greater than the SNR of the received signal by a factor of $L$, where $L$ is the matched filter length in samples. For the given radar system, the matched filter length is
 \begin{equation}
 L = \frac{\tau}{T_s} = \tau f_s = 400 \text{ samples}
 \end{equation}
@@ -151,14 +152,14 @@ For this system, the SNR at the ADC is chosen to be 20 dB. This SNR corresponds 
 \par
 The received signal for this target configuration can be generated according to Section \ref{modeling_section}. The resulting ADC signal is shown in Fig. \ref{adc_sig}.
 \begin{figure}[H]
-\centerline{\fbox{\includegraphics[width=0.5\textwidth]{adc_sig.png}}}
+\centerline{\fbox{\includegraphics[width=0.4\textwidth]{adc_sig.png}}}
 \caption{Received ADC Signal.}
 \label{adc_sig}
 \end{figure}
 \noindent
 The ADC signal can be passed through a matched filter filter to generate the signal shown in Fig. \ref{mf_output}.
 \begin{figure}[H]
-\centerline{\fbox{\includegraphics[width=0.5\textwidth]{mf_output.png}}}
+\centerline{\fbox{\includegraphics[width=0.4\textwidth]{mf_output.png}}}
 \caption{Matched Filter Output.}
 \label{mf_output}
 \end{figure}
