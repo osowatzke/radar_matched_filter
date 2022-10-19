@@ -1,3 +1,9 @@
+% Author: O. Sowatzke
+%
+% Date: 10/20/2022
+%
+% Subject: Class defines a radar object
+%
 classdef radar < handle
 
     properties (Constant)

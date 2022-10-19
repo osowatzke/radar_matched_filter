@@ -61,8 +61,10 @@ grid on;
 
 %% Resolvable Targets (Large Separation)
 
-% compute time delays (s) corresponding to 25% and 65% of PRI
-td = [0.25 0.65]*r.PRI;
+% compute time delays (s) corresponding to 25% of PRI
+% and 25% of PRI + 2 Code Lengths
+td = 0.25*r.PRI;
+td = [td, td + 2*r.duty_cyle*r.PRI];
 
 % compute range (m) required to place target at distance corresponding to 
 % time delays
