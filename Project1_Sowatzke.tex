@@ -133,6 +133,7 @@ y(t) = h(t)*(x(t)+n(t)) = h(t)*x(t) + h(t)*n(t)
 \end{equation}
 However, it also provides the ability to easily extract signal and noise power measurements from the matched filter output.
 \section{Matched Filter Output SNR}
+\label{mf_snr_section}
 The SNR at the output of the matched filter output should be greater than the SNR of the received signal by a factor of $L$, where $L$ is the matched filter length in samples. For the given radar system, the matched filter length is
 \begin{equation}
 L = \frac{\tau}{T_s} = \tau f_s = 400 \text{ samples}
@@ -185,6 +186,13 @@ P_n = \frac{1}{N}\sum_{m=0}^{N-1}|n[m]|^2
 \end{equation}
 \par
 For the given simulation, the observed SNR at the matched filter output is $45.97 \text{ dB}$. Note that this is approximately equivalent to the expected SNR of $46.02 \text{ dB}$.
+\section{Matched Filter Range Resolution}
+%The radar system's range resolution is related to the width of the peak of matched filter output. For a rectangular pulse, the matched filter response is triangular. In contrast, the response of a chirp function is a sinc. 
+The range resolution of the matched filter output is theoretically given by
+\begin{equation}
+\Delta R = \frac{c}{2\beta}
+\end{equation}
+This result will be confirmed via simulation. First, a target will be placed as described in Section \ref{mf_snr_section}. Then, a second target will be placed at a larger range and moved toward the first target until the second return cannot be distinguished from the first.
 
 
 %The resulting matched filter output can then be used to draw conclusions about SNR and range resolution.
