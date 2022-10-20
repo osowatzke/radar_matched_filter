@@ -177,7 +177,7 @@ The resulting signal power is defined using the peak of the filtered target retu
 \begin{equation}
 P_s = \text{max(}|x[k]|\text{)}^2
 \end{equation}
-The resulting noise power is defined using the filtered noise samples ($n[k]$). Note that the first $2L-1$ noise samples are ignored due to "blanking" and the "charge-up" of the matched filter. Let $m \in [0, N)$ be the "charged-up" samples of the matched filter. Then, the noise power is given by
+The resulting noise power is defined using the filtered noise samples ($n[k]$). Note that the first $2L-1$ noise samples are ignored due to "blanking" and the "charge-up" of the matched filter. Let $n[m]$ for $m \in [0, N)$ be the "charged-up" noise samples of the matched filter. Then, the noise power is given by
 \begin{equation}
 P_n = \frac{1}{N}\sum_{m=0}^{N-1}|n[m]|^2
 \end{equation}
@@ -205,7 +205,7 @@ The second target is clearly distinguishable from the first. As such, the second
 \begin{equation}
 R = 750 + \frac{c(2T_s)}{2} = 750 + cT_s = 753 \text{ m}
 \end{equation}
-The SNR of this target return can be configured as 20 dB. This results in an RCS of $0.01328m^2$. The matched filter response resulting from the updated target returns is shown in Fig. \ref{resolvable_full}.
+The SNR of this target return can be configured as 20 dB. This results in an RCS of $0.01328m^2$. The matched filter response resulting for the updated target returns is shown in Fig. \ref{resolvable_full}.
 \begin{figure}[H]
 \centerline{\fbox{\includegraphics[width=0.4\textwidth]{resolvable_full.png}}}
 \caption{Resolvable Target Returns ($3$m Spacing).}
@@ -223,16 +223,20 @@ If the second target is moved one sample closer to the first target, the range o
 \begin{equation}
 R = 750 + \frac{cT_s}{2} = 751.5 \text{ m}
 \end{equation}
-If the SNR of the target is configured as 20 dB, the resulting RCS is given by $0.01307m^2$. The peak of the updated matched filter is shown in Fig. \ref{unresolvable_peak}.
+If the SNR of the target is configured as 20 dB, the resulting RCS is given by $0.01317m^2$. The peak of the updated matched filter response is shown in Fig. \ref{unresolvable_peak}.
 \begin{figure}[H]
 \centerline{\fbox{\includegraphics[width=0.4\textwidth]{unresolvable_peak.png}}}
 \caption{Unresolvable Target Returns ($1.5$m Spacing).}
 \label{unresolvable_peak}
 \end{figure}
 \par
-Note that the target returns have blurred into a single target return. Therefore, the resulting range resolution is $1.5 \text{ m}$. The measured range resolution confirms the theoretical range resolution.
+Note that the target returns have blurred into a single target return. As such, the resulting range resolution is $1.5 \text{ m}$. The measured range resolution is identical to the theoretical range resoution. Therefore, the simulated result confirms the theoretical result.
 \section{Conclusion}
-A radar system was simulated in MATLAB and used to generate the matched filter response of an LFM waveform. The measured SNR gain from the matched filter was the code length ($L$), and the measured range resolution was $c/(2\beta)$. For a rectangular pulse of the same length $\tau$, the SNR gain of the matched filter is $L$. However, the range resolution is increased to $c\tau/2$. Therefore, the range resolution of an LFM waveform is smaller than that of a similar rectangular waveform by a factor of $\beta\tau$. For the simulated radar system, $\beta\tau = 400$. As such, the LFM waveform is valuable tool for maximizing SNR, while keeping the range resolution to a minimum.
+This document examined the matched filter response of an LFM waveform using a simulated pulsed radar system. Quantities of interest included the SNR and range resolution of the matched filter output. The SNR of the matched filter output was greater than than input SNR by a factor of the code length ($L$). Additionally, the range resolution of the matched filter output was $c/(2\beta)$.
+%A radar system was simulated in MATLAB and used to generate the matched filter response of an LFM waveform. 
+%The measured SNR gain from the matched filter was the code length ($L$), and the measured range resolution was $c/(2\beta)$.
+\par
+For a rectangular pulse of the same length $\tau$, the increase in SNR due to the matched filter is also given by $L$. However, the range resolution is increased to $c\tau/2$. Therefore, the range resolution of an LFM waveform is smaller than that of a rectangular waveform by a factor of $\beta\tau$. For the simulated radar system, $\beta\tau = 400$. This result demonstrates the advantage of using a pulse compression waveform such as LFM. Specifically, the SNR of the system can be increased, while maintaining a fine range resolution.
 
 \onecolumn
 \pagebreak
