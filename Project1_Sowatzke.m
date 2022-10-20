@@ -1,10 +1,11 @@
 % Author: O. Sowatzke
 %
-% Date: 10/15/2022
+% Date: 10/20/2022
 %
 % Subject: Script finds the SNR of a single target return before and after
 % matched filtering. Script also examines the case when two targets are
 % resolvable and when two targets are not resolvable
+%
 
 %% Preprocessing
 

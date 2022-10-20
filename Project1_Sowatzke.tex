@@ -29,7 +29,7 @@ The range resolution of a rectangular pulse is inversely proportional to the len
 \end{abstract}
 
 \begin{IEEEkeywords}
-Pulse Compression, Linear Frequency Modulated (LFM) Waveform, Matched Filter
+Pulse Compression, Linear Frequency Modulated (LFM) Waveform, Matched Filter, SNR, Range Resolution
 \end{IEEEkeywords}
 \section{Introduction}
 A linear frequency modulated (LFM) waveform is a pulse compression waveform defined by the following equation:
@@ -177,7 +177,7 @@ The resulting signal power is defined using the peak of the filtered target retu
 \begin{equation}
 P_s = \text{max(}|x[k]|\text{)}^2
 \end{equation}
-The resulting noise power is defined using the filtered noise samples ($n[k]$). Note that the first $2L-1$ noise samples are ignored due to "blanking" and the "charge-up" of the matched filter. Let $n[m]$ for $m \in [0, N)$ be the "charged-up" noise samples of the matched filter. Then, the noise power is given by
+The resulting noise power is defined using the filtered noise samples ($n[k]$). Note that the first $2L-1$ noise samples are ignored due to "blanking" and "charge-up" of the matched filter. Let $m \in [0, N)$ define the "charged-up" noise samples of the matched filter. Then, the noise power is given by
 \begin{equation}
 P_n = \frac{1}{N}\sum_{m=0}^{N-1}|n[m]|^2
 \end{equation}
